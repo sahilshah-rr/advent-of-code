@@ -13,3 +13,4 @@ Some of the learnings are here:
 5. Need multiple tsconfig to keep tests out of the distro but have test files be linted, compiled, etc. by VSCode.
    A single tsconfig file could work if you are okay with having tests in your distro OR
    if you are using a more complex build process which picks the relevant files after tsc is done
+6. `console.log` testing can be done by replacing the method with a mock for the scope of the test and then putting it back.
