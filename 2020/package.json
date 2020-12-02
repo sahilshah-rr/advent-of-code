@@ -1,0 +1,27 @@
+{
+  "name": "advent-of-code-2020",
+  "version": "1.0.0",
+  "description": "Solutions to Advent of Code challenges for the year 2020",
+  "main": "dist/app.js",
+  "scripts": {
+    "lint": "ts-standard --fix",
+    "build": "tsc",
+    "start": "tsc && node dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahilshah-rr/advent-of-code.git"
+  },
+  "author": "Sahil Shah <sahilshah.rr@gmail.com> (https://github.com/sahilshah-rr)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sahilshah-rr/advent-of-code/issues"
+  },
+  "homepage": "https://github.com/sahilshah-rr/advent-of-code#readme",
+  "devDependencies": {
+    "@types/node": "^14.14.10",
+    "ts-node": "^9.0.0",
+    "ts-standard": "^9.0.0",
+    "typescript": "^4.1.2"
+  }
+}
