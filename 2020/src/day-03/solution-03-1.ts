@@ -33,4 +33,4 @@ async function solve (): Promise<void> {
   }
 }
 
-void solve()
+syncSolve(solve)

@@ -1,4 +1,4 @@
-import { readLines } from '../util'
+import { readLines, syncSolve } from '../util'
 
 async function solve (): Promise<void> {
   const target = 2020
@@ -17,4 +17,4 @@ async function solve (): Promise<void> {
   })
 }
 
-void solve()
+syncSolve(solve)

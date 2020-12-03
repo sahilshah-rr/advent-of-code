@@ -1,4 +1,4 @@
-import { readLines } from '../util'
+import { readLines, syncSolve } from '../util'
 
 interface ParsedLine {
   first: number
@@ -44,4 +44,4 @@ async function solve (): Promise<void> {
   console.log(count)
 }
 
-void solve()
+syncSolve(solve)

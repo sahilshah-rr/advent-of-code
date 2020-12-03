@@ -1,4 +1,4 @@
-import { readLines } from '../util'
+import { readLines, syncSolve } from '../util'
 
 const tree = '#'
 const slopes = [
@@ -49,4 +49,4 @@ async function solve (): Promise<void> {
   console.log(product)
 }
 
-void solve()
+syncSolve(solve)

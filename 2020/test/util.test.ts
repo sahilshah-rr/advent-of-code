@@ -38,3 +38,14 @@ describe('readFile', () => {
       .resolves.toMatch(fileContents)
   })
 })
+
+describe('syncSolve', () => {
+  test('runs the given async solve function', () => {
+    let flag = false
+    async function solve (): Promise<void> {
+      flag = true
+    }
+    util.syncSolve(solve)
+    expect(flag).toEqual(true)
+  })
+})

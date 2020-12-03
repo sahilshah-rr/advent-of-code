@@ -20,7 +20,12 @@ export async function readFile (filePath: string): Promise<string> {
   return lines.join('\n')
 }
 
+export function syncSolve (solve: () => Promise<void>): void {
+  solve().then(() => {}, () => {})
+}
+
 export default {
   readLines,
-  readFile
+  readFile,
+  syncSolve
 }
