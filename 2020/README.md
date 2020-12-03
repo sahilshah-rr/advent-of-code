@@ -9,10 +9,9 @@ This will run `src/app.ts` which is a simple _Hello World!_.
 
 For any solution, run
 ```
-npx ts-node src/day-01/solution-01-1.ts
-npx ts-node src/day-01/solution-01-2.ts
+npm run solve 1 1
 ```
-This will print the solution to challenge 1 and 2 of day 1, respectively.
+This will print the solution to challenge 1 of day 1.
 
 # Test
 

@@ -6,14 +6,12 @@
   "scripts": {
     "lint": "ts-standard --fix",
     "test": "jest",
-
     "clean": "rm -rf dist",
-
     "prebuild": "npm run clean",
     "build": "tsc --project tsconfig.build.json",
-
     "prestart": "npm run build",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "solve": "./solve"
   },
   "repository": {
     "type": "git",

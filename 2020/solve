@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+day=`printf "%02d" $1`
+challenge=$2
+solution=./src/day-$day/solution-$day-$challenge.ts
+
+if [[ -s $solution ]]; then
+  npx ts-node $solution
+else
+  echo "No solution found for day $day, challenge $challenge" 1>&2
+  exit 1
+fi
