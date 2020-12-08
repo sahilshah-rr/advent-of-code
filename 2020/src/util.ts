@@ -20,12 +20,29 @@ export async function readFile (filePath: string): Promise<string> {
   return lines.join('\n')
 }
 
+export async function readGroups (
+  filePath: string,
+  processor: (lines: string[]) => any
+): Promise<void> {
+  let lines: string[] = []
+  await readLines(filePath, (line) => {
+    if (line === '') {
+      processor(lines)
+      lines = []
+    } else {
+      lines.push(line)
+    }
+  })
+  processor(lines)
+}
+
 export function syncSolve (solve: () => Promise<void>): void {
   solve().then(() => {}, () => {})
 }
 
 export default {
-  readLines,
   readFile,
+  readGroups,
+  readLines,
   syncSolve
 }
