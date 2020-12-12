@@ -25,6 +25,12 @@ Challenge solutions are not unit tested -- getting the correct answer is _it_!
 
 # Learnings
 
+## Javascript
+
+* `%` is _remainder_ operator **not** _modulo_ operator
+  which mean different things w.r.t. to negative numbers.
+  To get _modulo_ of negative numbers, do `((a % n ) + n ) % n`
+
 ## New Node/Typescript project
 
 * Can use `npm init` to create a new JS project with a `package.json`
