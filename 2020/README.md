@@ -30,6 +30,8 @@ Challenge solutions are not unit tested -- getting the correct answer is _it_!
 * `%` is _remainder_ operator **not** _modulo_ operator
   which mean different things w.r.t. to negative numbers.
   To get _modulo_ of negative numbers, do `((a % n ) + n ) % n`
+* Bitwise operators truncate operands to `32` bits even though regular
+  arithmetic supports upto `53` bits.
 
 ## New Node/Typescript project
 
