@@ -1,81 +1,58 @@
 import { readFile, syncSolve } from '../util'
 
-interface Node {
-  val: number
-  next?: Node
-  prev?: Node
-}
-
 const CupMax = 1_000_000
 const MoveMax = 10_000_000
 
 async function solve (): Promise<void> {
-  const time = new Date()
   const min = 1
   let max = -1
 
   // Start with a dummy node
-  let cur: Node = { val: 0 }
-  // Cache for direct access by value
-  const nodes: Node[] = [cur]
+  const cups: number[] = Array(CupMax + 1)
+  // Dummy cup
+  let cur = 0
 
   // Tack on input cups to the dummy and doubly link
   for (const c of (await readFile('src/day-23/input.txt'))) {
-    cur.next = { val: Number(c), prev: cur }
-    cur = cur.next
-    nodes[cur.val] = cur
-    if (cur.val > max) { max = cur.val }
+    cur = cups[cur] = Number(c)
+    if (cur > max) { max = cur }
   }
 
   // Fill up to a million in the same way
   for (let c = max + 1; c <= CupMax; c++) {
-    cur.next = { val: c, prev: cur }
-    cur = cur.next
-    nodes[c] = cur
+    cur = cups[cur] = c
   }
-  max = cur.val
+  max = cur
 
   // Connect end to start, unlink dummy node
-  cur.next = (nodes[0] as Node).next as Node
-  cur.next.prev = cur
-  cur = cur.next // Now pointing to the first cup from input
+  cur = cups[cur] = cups[0] as number
 
   // 🦀🥤🔀 Crab moves
-  let [first, second, third, dest]: Node[] = []
-  let dVal = 0
+  let [first, second, third, dest]: number[] = []
   for (let i = 0; i < MoveMax; i++) {
     // Hand nodes
-    first = cur.next as Node
-    second = first.next as Node
-    third = second.next as Node
+    first = cups[cur] as number
+    second = cups[first] as number
+    third = cups[second] as number
 
     // Find destination value ignoring the hand nodes
-    dVal = cur.val === min ? max : cur.val - 1
-    while (dVal === first.val || dVal === second.val || dVal === third.val) {
-      dVal = dVal === min ? max : dVal - 1
+    dest = cur === min ? max : cur - 1
+    while (dest === first || dest === second || dest === third) {
+      dest = dest === min ? max : dest - 1
     }
-    dest = nodes[dVal] as Node
 
-    // Detach hand nodes from current
-    cur.next = third.next as Node
-    cur.next.prev = cur
+    // Detach hand nodes from current and advance current
+    cur = cups[cur] = cups[third] as number
 
     // Attach hand nodes to destination
-    third.next = dest.next as Node
-    third.next.prev = third
-    dest.next = first
-    first.prev = dest
-
-    // Advance
-    cur = cur.next
+    cups[third] = cups[dest] as number
+    cups[dest] = first
   }
 
   // Grab the two cups after the min cup for result
-  first = nodes[min] as Node
-  second = first.next as Node
-  third = second.next as Node
-  console.log(second.val * third.val)
-  console.log((new Date()).getTime() - time.getTime())
+  second = cups[min] as number
+  third = cups[second] as number
+  console.log(second * third)
 }
 
 syncSolve(solve)
